@@ -3,4 +3,11 @@ author: "Matthew Twomey"
 description: "Cross Server Chat"
 main: com.beakstar.bukkit.plugins.BXChat
 name: BXChat
-version: 0.1
+version: 0.2
+
+commands:
+   bxchat:
+      description: This is a demo command.
+      usage: |
+        /<command> reload
+        /<command> list

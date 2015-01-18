@@ -11,7 +11,7 @@ public class NetworkServer {
     private ServerSocket listener = null;
     private Socket socket = null;
     private Boolean listen = true;
-    private CommandProcessor commandProcessor = new CommandProcessor();
+    private NetworkCommandProcessor networkCommandProcessor = new NetworkCommandProcessor();
 
     private Runnable listenerThread = new Runnable() {
         @Override
@@ -19,7 +19,7 @@ public class NetworkServer {
             try {
                 while (listen) {
                     socket = listener.accept();
-                    commandProcessor.process(readFromSocket(), socket.getInetAddress().getHostAddress());
+                    networkCommandProcessor.process(readFromSocket(), socket.getInetAddress().getHostAddress());
                     socket.close();
                 }
             } catch (IOException e){

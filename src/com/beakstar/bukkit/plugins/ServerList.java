@@ -1,6 +1,8 @@
 package com.beakstar.bukkit.plugins;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -37,6 +39,20 @@ public class ServerList {
         for (String hostname : ConfigFile.getServers().getKeys(false)){
             ConfigurationSection server = s.getConfigurationSection(hostname);
             addServer(server.getString("name"), hostname, server.getInt("port"), server.getString("key"));
+        }
+    }
+
+    public static void listServersToConsole(){
+        ConsoleLogger.log("Server List:");
+        for (Server server : getServers()){
+            ConsoleLogger.log(server.hostname);
+        }
+    }
+
+    public static void listServersToPlayer(Player player) {
+        player.sendMessage("Server List:");
+        for (Server server : getServers()){
+            player.sendMessage(server.hostname);
         }
     }
 }

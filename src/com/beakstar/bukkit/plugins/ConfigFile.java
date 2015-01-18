@@ -13,12 +13,18 @@ import java.util.Objects;
  */
 public class ConfigFile {
     private static YamlConfiguration yamlConfiguration;
+    private static File configFile;
 
     public static void setConfigFile(File f){
+        configFile = f;
+        loadConfigFile();
+    }
+
+    public static void loadConfigFile(){
         yamlConfiguration = new YamlConfiguration();
         yamlConfiguration.options().pathSeparator('|');
         try {
-            yamlConfiguration.load(f);
+            yamlConfiguration.load(configFile);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidConfigurationException e) {

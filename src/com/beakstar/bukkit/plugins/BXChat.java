@@ -1,6 +1,7 @@
 package com.beakstar.bukkit.plugins;
 
-import org.bukkit.Bukkit;
+import org.bukkit.*;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -39,14 +40,21 @@ public class BXChat extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new RelayLogOut(), this);
         // Register the death hook
         Bukkit.getPluginManager().registerEvents(new RelayDeath(), this);
+        // Register the achievement hook
+        Bukkit.getPluginManager().registerEvents(new RelayAchievement(), this);
+
+        Bukkit.getPluginManager().registerEvents(new CommandOverrides(), this);
+
+        // Add bcxhat command
+        // This will throw a NullPointerException if you don't have the command defined in your plugin.yml file!
+        this.getCommand("bxchat").setExecutor(new CommandProcessor(this));
+
+        // List out the participating servers on startup
+        ServerList.listServersToConsole();
 
         // Advise that the plugin is loaded
         ConsoleLogger.log(this.getName() + " is now enabled");
 
-        ConsoleLogger.log("Server List:");
-        for (Server server : ServerList.getServers()){
-            ConsoleLogger.log(server.hostname);
-        }
     }
 
     public void loadConfiguration() {
