@@ -1,0 +1,20 @@
+# Name of this server
+name: Space Quest
+
+# Key (used for very weak-sauce authentication, in the clear)
+key: magic
+
+# Port to listen on
+listenPort: 3334
+
+# List of servers in the chat network
+# Start the list with at least one server in the network
+servers:
+  10.10.10.10:
+    name: server1
+    port: 3334
+    key: magic
+  10.10.10.20:
+    name: server2
+    port: 3334
+    key: magic

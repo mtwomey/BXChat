@@ -1,0 +1,6 @@
+--- 
+author: "Matthew Twomey"
+description: "Cross Server Chat"
+main: com.beakstar.bukkit.plugins.BXChat
+name: BXChat
+version: 0.1
